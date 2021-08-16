@@ -41,6 +41,10 @@ INSTALLED_APPS = [
 
     #Local Apps
     'users',
+    'books',
+    'coupon',
+    'features',
+    'orders',
 ]
 
 MIDDLEWARE = [
