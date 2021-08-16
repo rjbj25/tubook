@@ -12,13 +12,15 @@ class Order(models.Model):
     address = models.CharField(max_length=250)
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     coupon = models.ForeignKey(Coupon,
         related_name='orders',
         null = True,
-        blank = True)
+        blank = True,
+        on_delete=models.CASCADE)
     discount = models.IntegerField(default=0,
         validators = [MinValueValidator(0), MaxValueValidator(100)])
 
@@ -37,8 +39,8 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, related_name='items')
-    product = models.ForeignKey(Book, related_name='order_items')
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Book, related_name='order_items', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
