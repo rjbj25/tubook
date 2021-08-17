@@ -17,7 +17,15 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from tubook.views import shop
+from users.views import login_view, logout_view
+from books.views import create_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('shop/', shop, name='shop'),
+    path('user/login/', login_view, name='login'),
+    path('user/logout/', logout_view, name='logout'),
+    path('books_maker/', create_book, name='create_book'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
