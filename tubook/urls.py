@@ -23,7 +23,7 @@ from books.views import create_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', shop, name='shop'),
+    path('', shop, name='shop'),
     path('user/login/', login_view, name='login'),
     path('user/logout/', logout_view, name='logout'),
     path('books_maker/', create_book, name='create_book'),
